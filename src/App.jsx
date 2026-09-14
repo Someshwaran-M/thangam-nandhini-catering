@@ -1,155 +1,31 @@
-import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
-import Loader from "./components/common/Loader";
+import Home from "./adminpanel/pages/Home";
+import Footer from "./adminpanel/components/layout/Footer";
+import Navbar from "./adminpanel/components/layout/Navbar";
 
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+import Login from "./login/Login.jsx";
 
-/* =========================================================
-   HARDWARE PAGES
-========================================================= */
-
-import Datastorage from "./technology/hardware/Datastorage";
-import PcServer from "./technology/hardware/PcServer";
-import ServerServer from "./technology/hardware/ServerServer";
-
-/* =========================================================
-   SERVICES PAGES
-========================================================= */
-
-import ConsultingProfessional from "./technology/services/ConsultingProfessional";
-
-/* =========================================================
-   SOLUTIONS PAGES
-========================================================= */
-
-import Cloud from "./technology/solutions/Cloud";
-import DataCenter from "./technology/solutions/DataCenter";
-import Emerging from "./technology/solutions/Emerging";
-import InformationCyber from "./technology/solutions/InformationCyber";
-
-function App() {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  /* =========================================================
-     LOADER
-  ========================================================= */
-
-  if (loading) {
-    return <Loader />;
-  }
-
+function HomePage() {
   return (
-    <>
-      {/* =====================================================
-          NAVBAR
-      ===================================================== */}
-
+    <div className="min-h-screen bg-[#FBF7EE]">
       <Navbar />
 
-      {/* =====================================================
-          ROUTES
-      ===================================================== */}
-
-      <Routes>
-
-        {/* ===================================================
-            HOME
-        =================================================== */}
-
-        <Route
-          path="/"
-          element={<Home />}
-        />
-
-        {/* ===================================================
-            CONTACT
-        =================================================== */}
-
-        <Route
-          path="/contact"
-          element={<Contact />}
-        />
-
-        {/* ===================================================
-            HARDWARE
-        =================================================== */}
-
-        {/* Data Storage */}
-        <Route
-          path="/technology/hardware/datastorage"
-          element={<Datastorage />}
-        />
-
-        {/* PC & Server */}
-        <Route
-          path="/technology/hardware/pc-server"
-          element={<PcServer />}
-        />
-
-        {/* Server & Server Management */}
-        <Route
-          path="/technology/hardware/server-server-management"
-          element={<ServerServer />}
-        />
-
-        {/* ===================================================
-            SERVICES
-        =================================================== */}
-
-        {/* Consulting & Professional Services */}
-        <Route
-          path="/technology/services/consulting-professional"
-          element={<ConsultingProfessional />}
-        />
-
-        {/* ===================================================
-            SOLUTIONS
-        =================================================== */}
-
-        {/* Cloud */}
-        <Route
-          path="/technology/solutions/cloud"
-          element={<Cloud />}
-        />
-
-        {/* Data Center */}
-        <Route
-          path="/technology/solutions/datacenter"
-          element={<DataCenter />}
-        />
-
-        {/* Emerging Solutions */}
-        <Route
-          path="/technology/solutions/emerging"
-          element={<Emerging />}
-        />
-
-        {/* Information & Cyber Security */}
-        <Route
-          path="/technology/solutions/information-cyber"
-          element={<InformationCyber />}
-        />
-
-      </Routes>
-
-      {/* =====================================================
-          FOOTER
-      ===================================================== */}
+      <main>
+        <Home />
+      </main>
 
       <Footer />
-    </>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 }
 
