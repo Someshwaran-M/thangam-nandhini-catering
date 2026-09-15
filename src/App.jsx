@@ -1,10 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./adminpanel/pages/Home";
-import Footer from "./adminpanel/components/layout/Footer";
-import Navbar from "./adminpanel/components/layout/Navbar";
+import Home from "./publicpanel/pages/Home";
+import Footer from "./publicpanel/components/layout/Footer";
+import Navbar from "./publicpanel/components/layout/Navbar";
 
 import Login from "./login/Login.jsx";
+
+import AdminRoutes from "./adminpanel/admin/AdminRoutes.jsx";
+
+import WorkerDashboard from "./adminpanel/worker/WorkerDashboard.jsx";
 
 function HomePage() {
   return (
@@ -23,8 +27,39 @@ function HomePage() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<Login />} />
+
+      {/* =========================
+          PUBLIC WEBSITE
+      ========================== */}
+      <Route
+        path="/"
+        element={<HomePage />}
+      />
+
+      {/* =========================
+          LOGIN
+      ========================== */}
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      {/* =========================
+          ADMIN PANEL
+      ========================== */}
+      <Route
+        path="/admin/*"
+        element={<AdminRoutes />}
+      />
+
+      {/* =========================
+          WORKER PANEL
+      ========================== */}
+      <Route
+        path="/worker/dashboard"
+        element={<WorkerDashboard />}
+      />
+
     </Routes>
   );
 }
